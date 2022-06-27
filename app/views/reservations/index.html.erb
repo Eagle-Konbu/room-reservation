@@ -5,8 +5,47 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Reservations</h1>
-    <%= link_to 'New reservation', new_reservation_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'New reservation', new_reservation_path, class: "btn btn-primary" %>
   </div>
+
+  <table class="table table-zebra w-full">
+    <thead>
+      <tr>
+        <th>時間</th>
+        <th>日</th>
+        <th>月</th>
+        <th>火</th>
+        <th>水</th>
+        <th>木</th>
+        <th>金</th>
+        <th>土</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% times.each do |time| %>
+        <tr>
+          <td><%= time %></td>
+          <% 7.times do |i| %>
+            <td>
+              <% if i % 2 == 0 %>
+                <div class="w-7 h-7">
+                  <svg class="stroke-error" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </div>
+              <% else %>
+                <div class="w-7 h-7">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="stroke-success" viewBox="0 0 512 512">
+                    <circle cx="256" cy="256" r="192" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="70"/>
+                  </svg>
+                </div>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <div id="reservations" class="min-w-full">
     <%= render @reservations %>
