@@ -8,7 +8,9 @@
     <%= link_to 'New reservation', new_reservation_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="reservations" class="min-w-full">
-    <%= render @reservations %>
+  <div>
+    <%= week_calendar do |date| %>
+      <%= date %>
+    <% end %>
   </div>
 </div>
