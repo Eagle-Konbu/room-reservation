@@ -3,7 +3,12 @@ class ReservationsController < ApplicationController
 
   # GET /reservations or /reservations.json
   def index
-    @reservations = Reservation.all
+    date_includes = params[:date_includes] || Time.zone.now.strftime("%Y-%m-%d")
+
+    @week_start_at = date_includes.to_date.beginning_of_week
+    @week_end_at = date_includes.to_date.end_of_week
+
+    @reservations = Reservation.where(start_at: @week_start_at..@week_end_at)
   end
 
   def my_reservations
