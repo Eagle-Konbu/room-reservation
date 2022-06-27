@@ -30,6 +30,9 @@
           <ul class="menu menu-horizontal p-0">
             <li><%= link_to "予約一覧", reservations_path %></li>
             <li><%= link_to "自分の予約", reservations_mine_path %></li>
+            <% if current_user.is_admin %>
+              <li><%= link_to '管理画面', rails_admin_path, target: :_blank %></li>
+            <% end %>
           </ul>
         </div>
 
@@ -47,6 +50,9 @@
             </li>
             <li><%= link_to '設定', edit_user_registration_path %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path %></li>
+            <% if current_user.is_admin %>
+              <li><%= link_to '管理画面', rails_admin_path %></li>
+            <% end %>
           </ul>
         </div>
       </div>
