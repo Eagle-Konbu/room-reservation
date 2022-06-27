@@ -10,6 +10,7 @@
         <th>開始時刻</th>
         <th>終了時刻</th>
         <th>目的</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
         <td><%= reservation.start_at.strftime('%H:%M') %></td>
         <td><%= reservation.end_at.strftime('%H:%M') %></td>
         <td><%= reservation.purpose %></td>
+        <td><%= button_to '取消', reservation_path(reservation), { method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-error' } %></td>
       </tr>
     <% end %>
     </tbody>
