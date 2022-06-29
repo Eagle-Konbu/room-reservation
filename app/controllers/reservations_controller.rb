@@ -24,10 +24,11 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-    @date = (Time.zone.parse(params[:date]) || Time.zone.now).to_date
-    @start_time = params[:start_time] || "09:00"
-
     @reservation = Reservation.new
+    @reservation.date = (Time.zone.parse(params[:date]) || Time.zone.now).to_date
+    # @reservation.start_time = Time.zone.parse(params[:start_time] || "09:00")
+    @reservation.start_time = params[:start_time] || "09:00"
+    p @reservation.start_time
   end
 
   # GET /reservations/1/edit
