@@ -5,6 +5,6 @@ class Reservation < ApplicationRecord
   validates :start_at, reservation_period: true
 
   def start_at_should_be_before_end_at
-    errors.add(:start_at, "can't be after end at") if start_at >= end_at
+    errors.add(:base, "開始時刻は終了時刻より前にしてください。") if start_at >= end_at
   end
 end
