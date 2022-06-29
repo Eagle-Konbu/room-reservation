@@ -11,7 +11,7 @@ class ReservationsController < ApplicationController
     @last_week_start_at_str = (@week_start_at - 1.week).strftime("%Y-%m-%d")
     @next_week_start_at_str = (@week_start_at + 1.week).strftime("%Y-%m-%d")
 
-    @reservations = Reservation.where(start_at: @week_start_at..@week_end_at)
+    @reservations = Reservation.where(start_at: @week_start_at..@week_end_at).to_a
   end
 
   def my_reservations
