@@ -5,7 +5,6 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Reservations</h1>
-    <%= link_to 'New reservation', new_reservation_path, class: "btn btn-primary" %>
   </div>
 
   <div class="btn-group">
@@ -35,11 +34,13 @@
                   </svg>
                 </div>
               <% else %>
-                <div class="w-7 h-7">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="stroke-success" viewBox="0 0 512 512">
-                    <circle cx="256" cy="256" r="192" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="70"/>
-                  </svg>
-                </div>
+                <%= link_to(new_reservation_path(:date => date.strftime('%Y-%m-%d'), :start_time => time)) do %>
+                  <div class="w-7 h-7">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-success" viewBox="0 0 512 512">
+                      <circle cx="256" cy="256" r="192" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="70"/>
+                    </svg>
+                  </div>
+                <% end %>
               <% end %>
             </td>
           <% end %>
@@ -47,8 +48,4 @@
       <% end %>
     </tbody>
   </table>
-
-  <div id="reservations" class="min-w-full">
-    <%= render @reservations %>
-  </div>
 </div>

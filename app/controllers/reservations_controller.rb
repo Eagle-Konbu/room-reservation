@@ -24,6 +24,9 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
+    @date = (Time.zone.parse(params[:date]) || Time.zone.now).to_date
+    @start_time = params[:start_time] || "09:00"
+
     @reservation = Reservation.new
   end
 
@@ -35,6 +38,9 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.user_id = current_user.id
+
+    @reservation.start_at = Time.zone.parse("#{reservation_params[:date]} #{reservation_params[:start_time]}")
+    @reservation.end_at = Time.zone.parse("#{reservation_params[:date]} #{reservation_params[:end_time]}")
 
     respond_to do |format|
       if @reservation.save
@@ -78,6 +84,6 @@ class ReservationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def reservation_params
-      params.require(:reservation).permit(:start_at, :end_at, :purpose, :user_id)
+      params.require(:reservation).permit(:start_at, :end_at, :purpose, :user_id, :date, :start_time, :end_time)
     end
 end
