@@ -1,18 +1,21 @@
 <div class="w-full">
   <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <div class="alert alert-success shadow-lg">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span><%= notice %></span>
+      </div>
+    </div>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Reservations</h1>
-  </div>
-
-  <div class="btn-group">
+  <div class="btn-group mb-5">
     <%= link_to '先週', reservations_path(:date_includes => @last_week_start_at_str), class: "btn btn-primary" %>
     <%= link_to '次週', reservations_path(:date_includes => @next_week_start_at_str), class: "btn btn-primary" %>
   </div>
 
-  <table class="table table-zebra w-full">
+  <table class="table table-zebra mb-5 w-full">
     <thead>
       <tr>
         <th>時間</th>
